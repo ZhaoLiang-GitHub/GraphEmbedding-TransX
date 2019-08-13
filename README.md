@@ -1,6 +1,6 @@
 # GraphEmbedding-TransX
 使用TensorFlow实现对知识图谱的表征学习，包括transe\transd\transh\transr
-
+如果有人在做相关工作的话，可以邮件与我联系1318525510@qq.c0m
 
 ## 依赖库
     
