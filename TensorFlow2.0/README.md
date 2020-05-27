@@ -1,0 +1,2 @@
+本仓库记录了使用TensorFlow2.0库来实现图表征学习中的Trans相关库的内容。
+本仓库包含了TransE 等Trans系列算法，如果有做相关工作的同学，可以通过邮件和我沟通联系 zhaoliang19960421@outlook.com
