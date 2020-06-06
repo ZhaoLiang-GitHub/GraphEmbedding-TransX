@@ -15,7 +15,9 @@ class GraphEmbedding_TranX(object):
 
         self.data_helper = Model.DataHelper(self.config)  # 数据处理类
         # 模型类
-        if self.config.model_name == 'trand':
+        if self.config.model_name == 'tranr':
+            self.model = Model.TrasnR(self.config,self.data_helper)  
+        elif self.config.model_name == 'trand':
             self.model = Model.TrasnD(self.config,self.data_helper)  
         else : # transe or default
             self.model = Model.TrasnE(self.config,self.data_helper)  
