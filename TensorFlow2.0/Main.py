@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+'''
+@File   :GraphEmbedding TransX 系列算法的主文件，在主文件内定义了一个类，
+         在这个类内实例化了需要的数据类和模型类，
+@Time   :2020/06/08 16:30:37
+@Author :zhaoliang19960421@outlook.com
+'''
+
 import tensorflow as tf
 import time
 import pickle
@@ -32,7 +41,8 @@ class GraphEmbedding_TranX(object):
         tf.summary.trace_on(profiler=True)  # 开启Trace（可选）
         for epoch in range(1, self.config.epochs + 1):
             start_time = time.time()
-            tf_dataset = self.data_helper.get_tf_dataset().shuffle(buffer_size=1000).batch(self.config.batch_size)
+            tf_dataset = self.data_helper.get_tf_dataset().shuffle(buffer_size=1000)
+                                                            .batch(self.config.batch_size)
             epoch_loss_avg = tf.keras.metrics.Mean()
             #训练
             for train_batch,train_x in enumerate(tf_dataset):
@@ -49,7 +59,8 @@ class GraphEmbedding_TranX(object):
                 print("Epoch {:03d}: AverageLoss: {:.3f},".format(epoch,epoch_loss_avg.result()))
                 path = checkpoint_manager.save(checkpoint_number=epoch)
                 with summary_writer.as_default(): # 指定记录器
-                    tf.summary.scalar("AverageLoss", epoch_loss_avg.result(), step=epoch)  # 将当前损失函数的值写入记录器
+                    tf.summary.scalar("AverageLoss", epoch_loss_avg.result(), step=epoch)  
+                    # 将当前损失函数的值写入记录器
                 print("Save checkpoint to path: {}".format(path))
                 print("This epoch spends {:.1f}s".format(time.time()-start_time))
         tf.saved_model.save(self.model,self.config.model_dir)
@@ -65,10 +76,12 @@ class GraphEmbedding_TranX(object):
                 f.write(json.dumps([id2name_dict[_id],vector.tolist()],ensure_ascii=False) + "\n")       
 
         with open(self.config.entity_embeddings_path,"w") as f:
-            save_embeddings(self.data_helper.entity_dict,self.model.ent_embeddings.embeddings.numpy(),f)
+            save_embeddings(self.data_helper.entity_dict,
+                            self.model.ent_embeddings.embeddings.numpy(),f)
 
         with open(self.config.relationship_embeddings_path,"w") as f:
-            save_embeddings(self.data_helper.relationship_dict,self.model.rel_embeddings.embeddings.numpy(),f)
+            save_embeddings(self.data_helper.relationship_dict,
+                            self.model.rel_embeddings.embeddings.numpy(),f)
 
         with open(self.config.data_helper_path,"wb") as f:
             pickle.dump(self.data_helper,f)
