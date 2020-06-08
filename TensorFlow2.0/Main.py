@@ -15,6 +15,9 @@ import pickle
 import Config
 import Models 
 import json
+import numpy as np
+import os
+
 class GraphEmbedding_TranX(object):
     def run(self):
         """主函数，在主函数内实例化类，获得数据，进行训练得到图表征结果
@@ -87,6 +90,7 @@ class GraphEmbedding_TranX(object):
 
         with open(self.config.data_helper_path,"wb") as f:
             pickle.dump(self.data_helper,f)
+
     def evaluation_model(self):
         # TODO
         '''评估当前的图表征学习模型的好坏
@@ -104,8 +108,31 @@ class GraphEmbedding_TranX(object):
         例如 头疼、感冒都是疾病，双黄连、青霉素都是药品
         那么在计算头疼最相近的实体时只会去疾病分类下的实体中寻找，而不会去药品下寻找
         '''
-        pass
-    def entity_dict(self,)
+        def _calculate_distance(vector1, vector2):
+            cosine_distance = np.dot(vector1, vector2) / (np.linalg.norm(vector1) * (np.linalg.norm(vector2))) # 余弦夹角
+            euclidean_distance = np.sqrt(np.sum(np.square(vector1-vector2))) # 欧式距离
+            return cosine_distance
+    def add_entity_dict(self):
+        file_list = self.config.entity_cluster_file_list
+        self.entity_cluster = {}
+        if file_list == []:
+            return 
+        for fin in file_list:
+            _,fullflname = os.path.split(fin)
+            cluster,_ = os.path.splitext(fullflname)
+            if cluster not in self.entity_cluster:
+                self.entity_cluster[cluster] = []
+            if os.path.isfile(f):
+                with open(f,'r') as f :
+                    for l in f.readlines():
+                        self.entity_cluster[cluster].append(l.strip())
+            else:
+                print('Can\'t open {}'.format(fin))
+
+
+
+
+
 if __name__ == "__main__":
     graphembeddingtranx = GraphEmbedding_TranX()
     graphembeddingtranx.run()  # 运行图表征，获得表征结果
