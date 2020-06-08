@@ -43,7 +43,7 @@ class GraphEmbedding_TranX(object):
         tf.summary.trace_on(profiler=True)  # 开启Trace（可选）
         for epoch in range(1, self.config.epochs + 1):
             start_time = time.time()
-            tf_dataset = self.data_helper.get_tf_dataset().shuffle(buffer_size=1000)
+            tf_dataset = self.data_helper.get_tf_dataset().shuffle(buffer_size=1000)\
                                                             .batch(self.config.batch_size)
             epoch_loss_avg = tf.keras.metrics.Mean()
             #训练
