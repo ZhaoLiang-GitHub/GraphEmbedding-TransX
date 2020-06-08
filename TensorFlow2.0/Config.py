@@ -47,6 +47,7 @@ class Config(object):
         self.entity_init_path = None  
         self.rel_init_path = None  
 
+
         '''TransD'''
 
 
