@@ -87,14 +87,6 @@ class GraphEmbedding_TranX(object):
 
         with open(self.config.data_helper_path,"wb") as f:
             pickle.dump(self.data_helper,f)
-class Evalution(object):
-    '''评估类，通过对利用势能差来对三元组进行分类实现对模型进行评估
-        通过两两计算距离，得到每个实体之间最相似的实体通过
-    '''
-    def __init__(self,graphembeddingtranx):
-        self.data_helper = graphembeddingtranx.data_helper
-        self.model_name = graphembeddingtranx.config.model_name
-        self.entity_dict_file_list = graphembeddingtranx.config.entity_dict_file_list
     def evaluation_model(self):
         # TODO
         '''评估当前的图表征学习模型的好坏
