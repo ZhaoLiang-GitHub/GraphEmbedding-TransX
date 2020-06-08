@@ -13,7 +13,7 @@ import tensorflow as tf
 import time
 import pickle
 import Config
-import Models
+import Models 
 import json
 class GraphEmbedding_TranX(object):
     def run(self):
@@ -24,14 +24,14 @@ class GraphEmbedding_TranX(object):
         
         self.config = Config.Config()  # 超参数类
 
-        self.data_helper = Model.DataHelper(self.config)  # 数据处理类
+        self.data_helper = Models.DataHelper(self.config)  # 数据处理类
         # 模型类
         if self.config.model_name == 'tranr':
-            self.model = Model.TrasnR(self.config,self.data_helper)  
+            self.model = Models.TrasnR(self.config,self.data_helper)  
         elif self.config.model_name == 'trand':
-            self.model = Model.TrasnD(self.config,self.data_helper)  
+            self.model = Models.TrasnD(self.config,self.data_helper)  
         else : # transe or default
-            self.model = Model.TrasnE(self.config,self.data_helper)  
+            self.model = Models.TransE(self.config,self.data_helper)  
         
         optimizer = tf.keras.optimizers.Adam(self.config.learning_rate)  # 优化器
         checkpoint = tf.train.Checkpoint(optimizer=optimizer,model=self.model,)  # 检查点
