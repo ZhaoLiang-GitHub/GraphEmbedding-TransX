@@ -34,6 +34,16 @@ class Config(object):
         if not os.path.exists(self.save_path):
             os.makedirs(self.save_path)
         self.embedding_dim = 200  # 实体与关系的词向量长度,在TransE、TransH中实体和关系的向量长度是一致的
+        self.entity_dict_file_list = []  
+        # 实体字典文件路径list，该list内的每一个元素是一个文件路径，每个文件是一个以文件名为标签的实体集合
+        # 例如 ['疾病.txt','药品.txt'],中的'疾病.txt'中的每一行是一个实体，该实体都是疾病
+        # 在‘药品.txt’中的每一行都是一个实体，该实体是药品
+        # 同一个实体可以出现在不同的实体类型中，例如感冒可以被认为是一种疾病，也可以被认为是症状
+        # 这个属性是在利用相似度计算方法获得最相似实体中会使用到，在图表征算法的训练过程中使用不到，
+        # 如果对应的图谱有实体分类，可以利用这个属性，加快在实体相似度计算，
+        self.flag_only_find_in_entity_cluster = False
+        # 和上一个属性相关，如果实体存在类型，在计算相似实体时，是否只在该实体类型的集合中进行查找
+        # 还是在全部的实体进行比较，Fasle是在全部实体中进行查找
 
 
         '''TransE'''
