@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+'''
+@File   :超参数的设置文件
+@Time   :2020/06/08 16:41:51
+@Author :zhaoliang19960421@outlook.com
+'''
+
+
 import os
 class Config(object):
     '''参数类，定义了在TransX算法中所需要的的超参数
