@@ -3,9 +3,9 @@ class Config(object):
     '''参数类，定义了在TransX算法中所需要的的超参数
     '''
     def __init__(self):
-    	'''General''' 
-    	self.model_name = 'transe'.lower()  # 模型名称，可选transe
-        self.learning_rate = 0.001 # 学习率
+        '''General''' 
+        self.model_name = 'transe'.lower()  # 模型名称，可选transe
+        self.learning_rate = 0.001  # 学习率
         self.batch_size = 128  # 每个批度输入的三元组个数
         self.epochs = 3  # 训练轮次
         self.margin = 1.0  # 合页损失函数中的标准化项
@@ -31,9 +31,9 @@ class Config(object):
 
 
         '''TransH'''
-		# self.norm_vector_dim = self.embedding_dim  # 关系的超平面法向量，和实体、向量长度是一致的,
-		self.epsilon = 0.01  # TransH 损失函数中软约束中的对于法向量和翻译向量的超参
-		self.C = 0.1  # TransH 中损失函数软约束的超参
+        # self.norm_vector_dim = self.embedding_dim  # 关系的超平面法向量，和实体、向量长度是一致的,
+        self.epsilon = 0.01  # TransH 损失函数中软约束中的对于法向量和翻译向量的超参
+        self.C = 0.1  # TransH 中损失函数软约束的超参
 
         
         '''TransR'''
