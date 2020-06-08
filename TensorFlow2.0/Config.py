@@ -19,7 +19,7 @@ class Config(object):
         self.epochs = 3  # 训练轮次
         self.margin = 1.0  # 合页损失函数中的标准化项
         self.dividers = '\t'  # triple文件中三元组的分割符，根据实际文件进行调整
-        self.triple_path = r"./data/HaoXinQing/triple.txt" # 三元组文件路径，每一行是 头实体dibiders关系dibiders尾实体
+        self.triple_path = r"./Triple/HaoXinQing/triple.txt" # 三元组文件路径，每一行是 头实体dibiders关系dibiders尾实体
         self.save_path = r"./result"  # 保存结果的路劲
         self.entity_embeddings_path = os.path.join(self.save_path,"entity_embeddings.txt")  #输出实体向量文件
         self.relationship_embeddings_path = os.path.join(self.save_path,r"relationship_embeddings.txt") #输出关系向量
