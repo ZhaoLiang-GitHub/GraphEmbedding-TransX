@@ -13,7 +13,7 @@ import tensorflow as tf
 import time
 import pickle
 import Config
-import Model
+import Models
 import json
 class GraphEmbedding_TranX(object):
     def run(self):
