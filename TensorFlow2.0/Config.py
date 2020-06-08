@@ -34,7 +34,8 @@ class Config(object):
         if not os.path.exists(self.save_path):
             os.makedirs(self.save_path)
         self.embedding_dim = 200  # 实体与关系的词向量长度,在TransE、TransH中实体和关系的向量长度是一致的
-        self.entity_cluster_file_list = []  
+        self.entity_cluster_file_list = ['./Entity_cluster/西药成份.txt','./Entity_cluster/症状.txt',
+                                        './Entity_cluster/中成药成份.txt','./Entity_cluster/中医证型.txt']  
         # 实体字典文件路径list，该list内的每一个元素是一个文件路径，每个文件是一个以文件名为标签的实体集合
         # 例如 ['疾病.txt','药品.txt'],中的'疾病.txt'中的每一行是一个实体，该实体都是疾病
         # 在‘药品.txt’中的每一行都是一个实体，该实体是药品
